@@ -1,0 +1,80 @@
+[
+  {
+    "userId": "azmd2xskjbjoe2q",
+    "email": "testingForFrontend@react.com",
+    "password": "$2a$10$oLtYd6e7xRvmYNQwdnZXhuvXeyA3M9f6nH54U0T9UqPed6sXfbgQq",
+    "createdAt": 1609340324929
+  },
+  {
+    "userId": "azmd5oekjbom8g1",
+    "email": "27ashwinirathod@gmail.com",
+    "password": "$2a$10$3Cnug.RUOI74sa4G9r0ih.DjO7qs4TT8VORHvLoYv9Xg49LY5CwZq",
+    "createdAt": 1609348622400
+  },
+  {
+    "userId": "azmd5oekjbombyn",
+    "email": "27ashwinirathod@gmail.com",
+    "password": "$2a$10$ORr2LAIIFHOzOe0OqHdrm.4Gm2V/htRT/RVdrxiyliGdKNJq4syj6",
+    "createdAt": 1609348626959
+  },
+  {
+    "userId": "azmd5oekjbomjtl",
+    "email": "27ashwinirathod@gmail.com",
+    "password": "$2a$10$gtRd/JBBM0vdQDALoTqbauJ/XpjT6KCfva9.zNadUJo8OT8EwuygK",
+    "createdAt": 1609348637145
+  },
+  {
+    "userId": "azmd5oekjbopn24",
+    "email": "27ashwinirathod@gmail.com",
+    "password": "$2a$10$57KRqUoLbL9Pv9FsAGMgpOuI.3MPtlyYDsxcFHEG.woZjLvv50CmW",
+    "createdAt": 1609348781308
+  },
+  {
+    "userId": "azmd5oekjbortqk",
+    "email": "ashwinirathod.f1@gmail.com",
+    "password": "$2a$10$TvA.d4wKdiLTjAtbm1Ud/.gxXDBVEdMVED.QDK5kg/2jEBckLSYdW",
+    "createdAt": 1609348883276
+  },
+  {
+    "userId": "azmd5oekjboryhu",
+    "email": "ashwinirathod.f1@gmail.com",
+    "password": "$2a$10$XgS6uDPjMEADz4dz.VfhzefXvl9LFf1R01TqMLxjCwFcEXJ70tm36",
+    "createdAt": 1609348889442
+  },
+  {
+    "userId": "azmd5oekjbotddd",
+    "email": "27ashwinirathod@gmail.com",
+    "password": "$2a$10$Ni0G586ZKJ6xEqfVG/4WyOApJf/WzHrIDBJh79aasdT2jtuBmXjzC",
+    "createdAt": 1609348955377
+  },
+  {
+    "userId": "azmdfsfkjcr3ve7",
+    "email": "testing123@gmail.com",
+    "password": "$2a$10$PbykB4nrnKZdiK0kkwbjeONC4kBnvPZNxCQyTpfVuJGtoELbGPu6y",
+    "createdAt": 1609413270702
+  },
+  {
+    "userId": "azmdfsfkjcre3r7",
+    "email": "testing123456@react.com",
+    "password": "$2a$10$o27q5HfYLCn3czuUnGhZmup67p1HbXgOTKbsQ4oHv/dObDk71dFZO",
+    "createdAt": 1609413748099
+  },
+  {
+    "userId": "azmd93ekjff5lpk",
+    "email": "clearinginput@gmail.com",
+    "password": "$2a$10$c05bl4NzN9kM0yCTxgrmXeFsTEC53ABgx8l2iCnTsjcfaCTcNmobC",
+    "createdAt": 1609574594599
+  },
+  {
+    "userId": "azmd9m7kjfm66gj",
+    "email": "anything@gmail.com",
+    "password": "$2a$10$Rymm2dtQ1i6NpajAjV3MKes6t.Q1En9CgO.YwYAGApHcjPgeU4sp6",
+    "createdAt": 1609586378802
+  },
+  {
+    "userId": "azmdb2skjfm8a5b",
+    "email": "testingclearinput@gmail.com",
+    "password": "$2a$10$J/gQ6M5IuZTa/kBKJ9ptYujJ7l9Gx0YeWlGI4JWdFaZFUzsKHv/H2",
+    "createdAt": 1609586476895
+  }
+]

@@ -1,0 +1,22 @@
+.not-found-container{
+    text-align: center;
+    width: 70%;
+    margin: auto;
+}
+.btn{
+    border: none;
+    background-color: cornflowerblue;
+    color: white;
+    padding: 15px;
+    font-weight: bold;
+}
+.image{
+    width: 100%;
+    height: 100%;
+}
+@media(max-width: 800px){
+    .btn{
+        padding: 2vw;
+        font-size: 2vw;
+    }
+}

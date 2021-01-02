@@ -1,0 +1,40 @@
+.nav-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background-color: cornflowerblue;
+    color: white;
+    margin-bottom: 10vh;
+}
+.title{
+    margin-left: 10px;
+}
+.home{
+    text-decoration: none;
+    color: white;
+}
+.home-p{
+    margin-right: 10px;
+}
+@media(max-width: 450px){
+    .nav-container{
+        flex-direction: column;
+    }
+    .title{
+        font-size: 15px;
+        margin-left: 0px;
+    }
+    .home-p{
+        font-size: 12px;
+        margin-right: 0px;
+    }
+}
+@media(max-width: 100px){
+    .title{
+        font-size: 12px;
+    }
+    .home-p{
+        font-size: 10px;
+    }
+}

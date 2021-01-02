@@ -1,25 +1,27 @@
-import logo from './logo.svg';
 import './App.css';
-
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+import {Link} from "react-router-dom";
+import image from "./coder.svg"
+function App (){
+  return(
+    <div className = "app-container">
+      <div className="app-intro">
+      <h2 className="heading">Welcome to CodersWorld.com</h2>
+      <img src= {image} alt = "" className="app-logo"></img>
+      </div>
+      <div>
+        <div>
+      <Link to="/register"  >
+          <button className= "create-btn">Create an account</button>
+      </Link>
+      </div>
+      <div>
+      <Link to="/login"  >
+          <button className="login-btn">Login</button>
+      </Link>
+      </div>
+      </div>
     </div>
-  );
+  )
 }
 
 export default App;

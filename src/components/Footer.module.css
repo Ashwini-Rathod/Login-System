@@ -1,0 +1,46 @@
+footer {
+    width: 100%;
+    height: auto;
+    text-align: center;
+    padding: 0px;
+    margin: 0px;
+    margin-top: 30px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    background-color: cornflowerblue;
+  }
+  .facebook-icon,
+  .twitter-icon,
+  .linkedin-icon {
+    font-size: 30px;
+    background-color: cornflowerblue;
+    color: white;
+    margin: 15px;
+  }
+  .icons {
+    background-color: cornflowerblue;
+  }
+  .footer-heading{
+    color: white;
+  }
+  @media(max-width: 650px){
+    .facebook-icon,
+    .twitter-icon,
+    .linkedin-icon {
+      font-size: 25px;
+    }
+    .footer-heading{
+      font-size: 12px;
+    }
+  }
+  @media(max-width: 200px){
+    .facebook-icon,
+    .twitter-icon,
+    .linkedin-icon {
+      font-size: 20px;
+    }
+    .footer-heading{
+      font-size: 8px;
+    }
+  }
