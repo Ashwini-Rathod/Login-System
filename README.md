@@ -30,11 +30,7 @@ The Login page asks the user to enter the email and password. In case of any wro
 
 #### Register Page:
 
-New users can register themselves using this page. The user will have to enter its email, password and confirm the password. As soon as the user clicks on resgiter button, a post request sent to the backend. After all the validations are checked, the user will get a message of "Successfully Registered". In case of some invalidations, the user will get the alert explaining the same.
+New users can register themselves using this page. The user will have to enter its email, password and confirm the password. As soon as the user clicks on resgiter button, a post request sent to the backend. After all the validations are checked, the user will get a message of "Successfully Registered". In case of some invalidations, the user will get the alert with relevent error messages.
  
 
-The application UI can make use of the backend endpoints created during node.js training session. The endpoints will provide a login and signup functionality. The application should provide following functionality
 
-Allow login using a username and password form fields
-Display dummy components upon successful login
-Upon failure of login prompt the user with relevant error messages.
