@@ -29,7 +29,6 @@ const checkReqBody = (req, res, next)=>{
     next();
 }
 const isEmailValid = (req,res, next)=>{
-    //validate using regex
     let regexForEmail = /^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$/;
     let email = req.body.email;
     if(!regexForEmail.test(email)){
@@ -51,14 +50,12 @@ const isEmailUnique = (req, res, next)=>{
     })
     if(findUser){
         return sendError(new AppError(401, "Unsuccessful", "User already exists"), req, res);
-
     }
     next();
 }
 
 const createPasswordHash = async (req,res, next) =>{
     try{
-
         let salt = await bcrypt.genSalt(10);
         req.body.password = await bcrypt.hash(req.body.password, salt);
         next();
@@ -73,15 +70,12 @@ const isUserRegistered = (req, res, next)=>{
     let findUser = users.find((user)=>{
         return user.email == req.body.email;
     })
-    console.log("User Found:",findUser);
     if(!findUser){
         return sendError(new AppError(422, "Unsuccessful", "Invalid email or user not registered"), req, res);
     }
     req.currentUser = {...findUser};
     next();
 }
-
-
 
 module.exports.checkReqBody = checkReqBody;
 module.exports.isEmailValid = isEmailValid;

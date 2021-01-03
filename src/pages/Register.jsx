@@ -1,6 +1,11 @@
 import {Component} from "react";
 import logo from "./register.svg";
+import { Link } from "react-router-dom";
+import Nav from "../components/Nav";
+import Footer from "../components/Footer";
+import initFontAwesome from "../components/initFontAwesome";
 const url = "http://localhost:5000/users/signin";
+
 class Register extends Component{
     state= {
         email: "",
@@ -10,10 +15,6 @@ class Register extends Component{
     
     submitForm = (event) =>{
         event.preventDefault();
-        console.log("Form Submitted");
-        console.log("email", event.target.email.value);
-        console.log("password", event.target.password.value);
-        console.log("confirmPassword", event.target.confirmPassword.value);
         fetch(url, {
             method: "POST",
             headers: {
@@ -29,13 +30,12 @@ class Register extends Component{
             return response.json();
         })
         .then((data)=>{
-            console.log(data);
             if(data.status === "Unsuccessful"){
                 alert(data.message);
                 this.clearInputField();
             }
             else{
-                alert("Successfully Registered");
+                alert(`Welcome! You are now a part of CodersWorld Family. Please login to continue.`);
                 this.clearInputField();
             }
         })
@@ -45,7 +45,6 @@ class Register extends Component{
         this.setState({email: event.target.email.value, password: event.target.password.value})
     }
     updateEmail = (event) =>{
-        console.log(event.target.value);
         this.setState({email: event.target.value});
     }
     updatePassword = (event)=>{
@@ -57,30 +56,43 @@ class Register extends Component{
     clearInputField = (event) =>{
         this.setState({password: "", email: "", confirmPassword: ""});
     }
+
     render(){
+        initFontAwesome();
         return(
-            <div className="container">
-                <div>
-                    <h2>Create account</h2>
-                    <img src={logo} alt="" className="logo"></img>
-                </div>
-                <form onSubmit= {this.submitForm} className="form">
-                    <div className="form-group">
-                    <label htmlFor= "email" className="label">Email</label>
-                    <input type = "email" name= "email" onChange={this.updateEmail} value={this.state.email} className="input"></input>
-                    </div>
-                    <div className="form-group">
-                    <label htmlFor = "password" className="label">Password</label>
-                    <input type= "password" name= "password" onChange={this.updatePassword} value= {this.state.password} className="input"></input>
-                    </div>
-                    <div className="form-group">
-                    <label htmlFor = "confirmPassword" className="label">Confirm Password</label>
-                    <input type= "password" name= "confirmPassword" onChange={this.updateChangePassword} value= {this.state.confirmPassword} className="input"></input>
-                    </div>
+            <div>
+                <Nav/>
+                <div className="container">
                     <div>
-                    <input type= "submit" value= "Register" className="btn"></input>
+                        <h2 className="welcome-msg">Create account</h2>
+                        <img src={logo} alt="" className="logo"></img>
                     </div>
-                </form>
+                    <form onSubmit= {this.submitForm} className="form">
+                        <div className="form-group">
+                        <label htmlFor= "email" className="label">Email</label>
+                        <input type = "email" name= "email" onChange={this.updateEmail} value={this.state.email} className="input"></input>
+                        </div>
+                        <div className="form-group">
+                        <label htmlFor = "password" className="label">Password</label>
+                        <input type= "password" name= "password" onChange={this.updatePassword} value= {this.state.password} className="input"></input>
+                        </div>
+                        <div className="form-group">
+                        <label htmlFor = "confirmPassword" className="label">Confirm Password</label>
+                        <input type= "password" name= "confirmPassword" onChange={this.updateChangePassword} value= {this.state.confirmPassword} className="input"></input>
+                        </div>
+                        <div>
+                        <input type= "submit" value= "Register" className="btn"></input>
+                        </div>
+                    </form>
+                    <div>
+                        <p className="additional-p">Already an user?  
+                            <Link to="/login" className="additional">
+                                Login
+                            </Link>
+                        </p>
+                    </div>
+                </div>
+                <Footer/>
             </div>
         )
     }

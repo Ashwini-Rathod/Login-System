@@ -1,6 +1,5 @@
 .container{
     width: 40%;
-    height: 90vh;
     margin: auto;
     text-align: center;
     display: flex;
@@ -27,7 +26,7 @@
 }
 .label{
     font-family: "Open Sans", sans-serif;
-    font-size: 20px;
+    font-size: 18px;
 }
 .input{
     min-width: 18em;
@@ -42,11 +41,91 @@
     box-shadow: 0px 0px 12px 0.8px #3474dbb2;
 }
 .btn{
-    font-size: 21px;
-    padding: 5px 20px;
+    font-size: 18px;
     border: 0;
     background-color: #3498db;
     color: #fff;
     border-radius: 3px;
     cursor: pointer;
+    margin-bottom: 20px;
+}
+.welcome-msg{
+    color: #3498db;
+}
+.additional{
+    color: #3498db;
+    text-decoration: none;
+}
+@media(max-width: 800px){
+    .container{
+        width: 50%;
+    }
+    .label{
+        font-size: 15px;
+    }
+    .input{
+        min-width: 12em;
+    }
+}
+@media(max-width: 450px){
+    .container{
+        width: 70%;
+    }
+    .label{
+        font-size: 12px;
+    }
+    .input{
+        min-width: 0em;
+        width: 80%;
+    }
+    .additional{
+        font-size: 12px;
+    }
+    .additional-p{
+        font-size: 12px;
+    }
+}
+@media(max-width: 350px){
+    .welcome-msg{
+        font-size: 18px;
+    }
+    .container{
+        width: 80%;
+    }
+    .label{
+        font-size: 12px;
+    }
+    .input{
+        min-width: 0em;
+        width: 60%;
+        height: 20px;
+    }
+    .btn{
+        font-size: 25px;
+    }
+}
+@media(max-width: 100px){
+    .welcome-msg{
+        font-size: 10px;
+    }
+    .container{
+        width: 80%;
+    }
+    .label{
+        font-size: 8px;
+    }
+    .input{
+        font-size: 8px;
+    }
+    .input{
+        min-width: 0em;
+        width: 40%;
+        height: 15px;
+    }
+    .additional{
+        font-size: 8px;
+    }
+    .additional-p{
+        font-size: 8px;
+    }
 }

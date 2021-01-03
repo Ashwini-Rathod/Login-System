@@ -44,3 +44,13 @@ footer {
       font-size: 8px;
     }
   }
+  @media(max-width: 100px){
+    .facebook-icon,
+    .twitter-icon,
+    .linkedin-icon {
+      font-size: 15px;
+    }
+    .footer-heading{
+      font-size: 4px;
+    }
+  }

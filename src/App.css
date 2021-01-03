@@ -1,5 +1,4 @@
 .app-container{
-  /* border: 2px solid black; */
   width: 40%;
   height: 90vh;
   margin: auto;
@@ -16,15 +15,77 @@
   margin: auto;
 }
 .create-btn{
-  background-color: blue;
+  background-color: #3498db;
   padding: 10px;
   color: white;
   width: 60%;
   margin-bottom: 10px;
+  border: none;
+  font-size: 18px;
+  font-weight: bold;
+  border-radius: 20px;
 }
 .login-btn{
-  background-color: red;
+  background-color: rgb(241, 89, 89);
   padding: 10px;
   color: white;
   width: 60%;
+  border: none;
+  font-size: 18px;
+  font-weight: bold;
+  border-radius: 20px;
+}
+.heading{
+  color: #3498db;
+  font-size: 30px;
+}
+@media(max-width: 700px){
+  .heading{
+    font-size: 22px;
+  }
+  .login-btn, .create-btn{
+    font-size: 15px;
+  }
+  .app-container{
+    width: 50%;
+  }
+
+}
+@media(max-width: 500px){
+  .heading{
+    font-size: 18px;
+  }
+  .login-btn, .create-btn{
+    font-size: 10px;
+  }
+  .app-container{
+    width: 60%;
+  }
+
+}
+@media(max-width: 300px){
+  .heading{
+    font-size: 12px;
+  }
+  .login-btn, .create-btn{
+    font-size: 8px;
+  }
+  .app-container{
+    width: 70%;
+  }
+
+}
+@media(max-width: 180px){
+  .app-container{
+    width: 80%;
+    height: auto;
+  }
+  .heading{
+    font-size: 5vw;
+  }
+  .login-btn, .create-btn{
+    font-size: 4px;
+    border-radius: 0px;
+    padding: 2px;
+  }
 }

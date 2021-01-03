@@ -14,9 +14,6 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/users", userRouter);
-app.get("/dashboard", protectRoute, (req, res)=>{
-    res.sendFile(path.join(__dirname, "public", "dashboard.html"));
-})
 app.listen(process.env.PORT, ()=>{
     console.log("Listening to the port")
 })

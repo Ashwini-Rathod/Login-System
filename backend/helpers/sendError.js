@@ -4,5 +4,4 @@ const sendError = (error, req, res) =>{
         message: error.message, 
     })
 }
-
 module.exports = sendError;

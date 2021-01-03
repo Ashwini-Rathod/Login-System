@@ -4,5 +4,4 @@ const sendResponse = (statusCode, status, data, req, res)=>{
         data: [data],
     })
 }
-
 module.exports = sendResponse;

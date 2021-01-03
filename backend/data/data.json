@@ -76,5 +76,47 @@
     "email": "testingclearinput@gmail.com",
     "password": "$2a$10$J/gQ6M5IuZTa/kBKJ9ptYujJ7l9Gx0YeWlGI4JWdFaZFUzsKHv/H2",
     "createdAt": 1609586476895
+  },
+  {
+    "userId": "azmdiw8kjfzsohy",
+    "email": "ashwini@gmail.com",
+    "password": "$2a$10$QzdC4NOG6AF3nSYVXcLZQ.NmrNuST7Yf0vvzO5sCttRKy99156dge",
+    "createdAt": 1609609263621
+  },
+  {
+    "userId": "azmdiw8kjfzu0ak",
+    "email": "ashwinirathod@gmail.com",
+    "password": "$2a$10$wNHBUGojXAOvi31r7hbUu.FYPmb4iezQmttHKb6MP4dSQ2zU7evOS",
+    "createdAt": 1609609325564
+  },
+  {
+    "userId": "azmd2j6kjgp3076",
+    "email": "testing1234@gmail.com",
+    "password": "$2a$10$L1XVtO2AbiufCYq99H2Bd.Gn8qOnTncXk6DSEGwD2VlxiOBdey/sK",
+    "createdAt": 1609651735745
+  },
+  {
+    "userId": "azmd2j6kjgpcsty",
+    "email": "testing1234@gmail.com",
+    "password": "$2a$10$zX//pbjZYFSyUeLrj69dfObZYcEdY2ZdiHGJRqEdu.RFhVWQS1ub.",
+    "createdAt": 1609652192758
+  },
+  {
+    "userId": "azmddnckjhan97d",
+    "email": "ashwini123@gmail.com",
+    "password": "$2a$10$iJETlw9uQ9BeBAM5mjgJp.466W52GdJdZQePOvyR9yF4RvuemhoMO",
+    "createdAt": 1609687952472
+  },
+  {
+    "userId": "azmddvekjhatgoj",
+    "email": "trying123@gmail.com",
+    "password": "$2a$10$b3l7mk1ywIFTwJKC7cfckeFlb19h0Yq.bo9DHA0oidGL4p2D5agqC",
+    "createdAt": 1609688242098
+  },
+  {
+    "userId": "azmddx5kjhaveir",
+    "email": "happy123@gmail.com",
+    "password": "$2a$10$WgE7QCps99tohbvPnqnFEO/JIZTSew9.fIHIvLGA1AHNEj95bStB2",
+    "createdAt": 1609688332610
   }
 ]

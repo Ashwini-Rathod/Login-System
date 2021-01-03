@@ -6,6 +6,5 @@ class User{
         this.password = password; //hashed form : bcrpt
         this.createdAt = Date.now();
     }
-
 }
 module.exports = User;

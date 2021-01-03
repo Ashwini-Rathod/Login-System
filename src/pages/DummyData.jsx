@@ -1,13 +1,31 @@
 import { Component } from "react";
 import Cookies from "js-cookie";
 import "./Dummy.css";
-
 const url = "http://localhost:5000/users/tasks";
 
 class Dummy extends Component{
     state={
-        tasks: [],
+        tasks: [], 
     }
+    
+    updateStatus(id) {
+        fetch(`${url}/${id}`, {
+            method : "PATCH",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+        })
+        .then((response)=>{
+            return response.json();
+        })
+        .then((data)=>{
+            this.setState({tasks: data.data});            
+        })
+        .catch((err)=>{
+            console.log(err);
+        })
+    }
+
     componentDidMount = () =>{
         fetch(url, {
             method: "GET",
@@ -16,12 +34,10 @@ class Dummy extends Component{
             }
         })
         .then((response)=>{
-            console.log(response);
             return response.json();
         })
         .then((data)=>{
-            console.log(data);
-            this.setState({tasks: data.data})
+            this.setState({tasks: [...data.data]})
         })
         .catch((err)=>{
             console.log(err);
@@ -30,17 +46,30 @@ class Dummy extends Component{
 
     render(){
         return(
-            <div className="dummy-body">
-                <div className="dummy-container">
+            <div className="main-div">
+                <div>
                     <div>
-                        <h1>Courses to complete today</h1>
+                        <h1 className="dummy-heading">Let's start coding...!!</h1>
                     </div>
                     <div>
                     {
                         this.state.tasks.map((task)=>{
                             return(
-                                <div>
-                                    <p>{task.task}</p>
+                                <div key={task.taskId} className="dummy-container">
+                                    <div>
+                                    <p style={{
+                                        textDecoration: task.status === "Complete"?
+                                        (
+                                            "line-through"
+                                        ):
+                                        (
+                                            ""
+                                        )
+                                    }} className="dummy-p">{task.task}</p>
+                                    </div>
+                                    <div>
+                                    <button onClick={()=> this.updateStatus(task.taskId)} className="complete-btn">Complete</button>
+                                    </div>
                                 </div>
                             )
                         })

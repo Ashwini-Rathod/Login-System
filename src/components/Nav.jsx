@@ -1,5 +1,5 @@
 import {Link} from "react-router-dom";
-import "./nav.css"
+import "./Nav.css"
 function Nav (){
     return(
         <nav className="nav-container"> 

@@ -3,8 +3,6 @@ const path = require("path");
 const fileName = path.join(__dirname, "..", "data", "data.json");
 const users = JSON.parse(fs.readFileSync(fileName, "UTF-8"));
 const User = require("../models/user-model");
-const taskFile = path.join(__dirname, "..", "data", "tasks.json");
-const tasks = JSON.parse(fs.readFileSync(taskFile, "UTF-8"));
 const sendError = require("../helpers/sendError");
 const sendResponse = require("../helpers/sendResponse");
 const AppError = require("../helpers/errorClass");
@@ -12,13 +10,6 @@ const bcrypt = require("bcryptjs");
 const dotenv = require("dotenv");
 dotenv.config({path: "./config.env"});
 const { generatetoken }= require("../helpers/jwt-token");
-
-const getAllTasks = (req, res) =>{
-    res.status(200).json({
-        status: "Successful",
-        data: tasks,
-    })
-}
 
 const signUpUser = (req, res)=>{
     let newUser = new User(req.body.email, req.body.password);
@@ -32,18 +23,14 @@ const signUpUser = (req, res)=>{
     })
 }
 
-
 const loginUser = async (req, res, next)=>{
-    console.log("current user: ", req.currentUser);
     try{
         let compare = await bcrypt.compare(req.body.password, req.currentUser.password);
-        console.log("result: ", compare);
         if(!compare){
             return sendError(new AppError(401, "Unsuccessful", "Incorrect Password"),req, res);
         }
         //generate a jwt token
         let jwtToken = await generatetoken({ email: req.currentUser.email}, process.env.JWT_SECRET, { expiresIn: "1d"});
-        console.log(jwtToken);
         res.cookie("jwt", jwtToken); 
         res.status(200).json({
             status: "Successful",
@@ -51,25 +38,14 @@ const loginUser = async (req, res, next)=>{
                 jwt: jwtToken,
             }]
         })
-        // sendResponse(200, "Successful", "User logged in successfully", req, res);
-    }
-    
+    }  
     catch(err){
-        console.log(err);
         return sendError(new AppError(500, "Unsucessful", "Internal Error"),req, res);
     }
-
-
 }
 
-// const logOutUser =(req, res)=>{
-
-// }
-
-
 module.exports.signUpUser = signUpUser;
-// module.exports.logOutUser = logOutUser;
 module.exports.loginUser = loginUser;
-module.exports.getAllTasks = getAllTasks;
+
 
 

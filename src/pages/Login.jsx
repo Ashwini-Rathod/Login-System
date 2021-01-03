@@ -1,9 +1,14 @@
 import {Component} from "react";
 import Cookies from "js-cookie";
 import Dummy from "../pages/DummyData";
+import { Link } from "react-router-dom";
 import "./Login.css";
-import login from "./login.svg"
+import login from "./login.svg";
+import Nav from "../components/Nav";
+import Footer from "../components/Footer";
+import initFontAwesome from "../components/initFontAwesome";
 const url = "http://localhost:5000/users/login";
+
 class Login extends Component{
     state= {
         email: "",
@@ -14,9 +19,6 @@ class Login extends Component{
     
     submitForm = (event) =>{
         event.preventDefault();
-        console.log("Form Submitted");
-        console.log("email", event.target.email.value);
-        console.log("password", event.target.password.value);
         fetch(url, {
             method: "POST",
             headers: {
@@ -31,17 +33,15 @@ class Login extends Component{
             return response.json();
         })
         .then((data)=>{
-            console.log(data);
             if(data.status === "Successful"){
                 this.setState({successfullyLoggedIn: true});
-                this.setState({email: "", password: ""});
                 Cookies.set("jwt", data.data[0].jwt);
                 this.clearInputField();
             }
             else{
                 alert(data.message);
-            }
-              
+                this.clearInputField();
+            }       
         })
         .catch((err)=>{
             console.log(err);
@@ -57,9 +57,12 @@ class Login extends Component{
     clearInputField = (event) =>{
         this.setState({password: "", email: ""});
     }
+
     render(){
+        initFontAwesome();
         return(
             <div>
+                <Nav/>
                 {
                     this.state.successfullyLoggedIn === true? 
                     (
@@ -68,7 +71,7 @@ class Login extends Component{
                     (
                     <div className="container">
                     <div>
-                        <h2>Login</h2>
+                        <h2 className="welcome-msg">Login to get started!!</h2>
                         <img src={login} alt = "" className="logo"></img>
                     </div>
                     <form onSubmit= {this.submitForm} className="form">
@@ -84,24 +87,18 @@ class Login extends Component{
                         <input type= "submit" value= "Login" className="btn"></input>
                         </div>
                     </form>
-                    {/* <div>
-                        <button>Need an account? 
-                            <Link to ="/register">Register Now</Link>
-                        </button>
-                    </div> */}
+                    <div>
+                        <p className="additional-p">Need an account? 
+                            <Link to ="/register" className="additional">Register Now</Link>
+                        </p>
+                    </div>
                     </div>
                     )
                 }
-
+            <Footer/>
             </div>
         )
     }
 }
 
-
 export default Login;
-
-//create a backend data source for storing all logged in users.
-//create a middleware which will check if the user is already logged in or not.
-//if the user is logged in, display the necesarry message.
-//if the user is not logged in, push the user into loggedin array and display necessary message.

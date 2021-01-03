@@ -10,8 +10,6 @@ const sendResponse = require("../helpers/sendResponse");
 const AppError = require("../helpers/errorClass");
 
 const protectRoute = async (req, res, next)=>{
-    console.log("headers in req body", req.headers.authorization);
-  // extract token
     if (!req.headers.authorization) {
         return sendError(
         new AppError(401, "Unsuccessful", "Please login or signup"),
@@ -31,7 +29,6 @@ const protectRoute = async (req, res, next)=>{
       res,
     );
   }
-
   let { email: currentUser } = users.find((user) => {
     return user.email == decoded.email;
   });
@@ -42,9 +39,8 @@ const protectRoute = async (req, res, next)=>{
       res,
     );
   }
-  // check verification
   req.currentUser = currentUser;
-  // give access
   next();
 }
+
 module.exports.protectRoute = protectRoute;
