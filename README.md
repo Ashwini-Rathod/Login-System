@@ -1,70 +1,40 @@
-# Getting Started with Create React App
+# SignUp and Login System using React.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Idea:
 
-## Available Scripts
+This project consists of a login page designed using react components for creating a login functionality. It also consists of Signup page which will help the new user to register first and then use the services.
 
-In the project directory, you can run:
+### Backend:
 
-### `npm start`
+Backend is designed using nodejs. Here, api endpoint are defined for signup and login. After successful login, the user will see a dummy page consisting of some dummy data. This dummy page is protected and hence, only the authenticated users will be able to access it after login.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+#### Backend api enpoints supports the following operations:
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+1. Register: http://localhost:5000/users/register (This endpoint is designed for the new users to sign up).
 
-### `npm test`
+2. Login: http://localhost:5000/users/login (This endpoint is designed for user login)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+3. Dummy Page: http://localhost:5000/users/tasks (After successful login, the user gets directed to dummy page and the data of this page is fetched using the provided url)
 
-### `npm run build`
+### Frontend:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+The UI of the application is designed using react. The routing to different pages is implemented using React Routing. The frontend consists of the following pages:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+#### Home Page: 
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+The home page consists of options to either Register or Login to the application. The route used for the home page is "/".
 
-### `npm run eject`
+#### Login Page:
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+The Login page asks the user to enter the email and password. In case of any wrong input by the user, there will be a pop of alert. If the email and password are correct, a post request is sent to the backend and if all the validations are successful, the user will be logged in successfully. After the succesful login, a cookie is set. This cookie is passed in authorization header of the dummy page. And hence the dummy page will be displayed only when the login is successful and the user is authorized. The route for the login page is "/login".
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+#### Register Page:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+New users can register themselves using this page. The user will have to enter its email, password and confirm the password. As soon as the user clicks on resgiter button, a post request sent to the backend. After all the validations are checked, the user will get a message of "Successfully Registered". In case of some invalidations, the user will get the alert explaining the same.
+ 
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+The application UI can make use of the backend endpoints created during node.js training session. The endpoints will provide a login and signup functionality. The application should provide following functionality
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Allow login using a username and password form fields
+Display dummy components upon successful login
+Upon failure of login prompt the user with relevant error messages.
