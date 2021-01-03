@@ -30,7 +30,13 @@ The Login page asks the user to enter the email and password. In case of any wro
 
 #### Register Page:
 
-New users can register themselves using this page. The user will have to enter its email, password and confirm the password. As soon as the user clicks on resgiter button, a post request sent to the backend. After all the validations are checked, the user will get a message of "Successfully Registered". In case of some invalidations, the user will get the alert with relevent error messages.
+New users can register themselves using this page. The user will have to enter its email, password and confirm the password. As soon as the user clicks on resgiter button, a post request sent to the backend. After all the validations are checked, the user will get a message of "Successfully Registered". In case of some invalidations, the user will get the alert with relevent error messages. The route used for this page is "/register"
+
+#### Not Found Page:
+
+This page will be displayed in case of any invalid Url other than the routes defined in the Router.jsx file.
+
+
  
 
 
