@@ -1,7 +1,7 @@
 import { Component } from "react";
 import Cookies from "js-cookie";
 import "./Dummy.css";
-const url = "http://localhost:5000/users/tasks";
+const url = "https://signup-login-backend.herokuapp.com/users/tasks";
 
 class Dummy extends Component{
     state={

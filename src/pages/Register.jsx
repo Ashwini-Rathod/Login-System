@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import Nav from "../components/Nav";
 import Footer from "../components/Footer";
 import initFontAwesome from "../components/initFontAwesome";
-const url = "http://localhost:5000/users/signin";
+const url = "https://signup-login-backend.herokuapp.com/users/signin";
 
 class Register extends Component{
     state= {
@@ -38,14 +38,14 @@ class Register extends Component{
             }
             else{
                 alert(`Welcome! You are now a part of CodersWorld Family. Please login to continue.`);
+                this.props.history.push("/login");
                 this.clearInputField();
             }
         })
         .catch((err)=>{
             console.log(err);
         })
-        this.setState({email: event.target.email.value, password: event.target.password.value})
-        this.props.history.push("/login");
+        this.setState({username: event.target.username.value, password: event.target.password.value})
     }
     updateUserName = (event) =>{
         this.setState({username: event.target.value});
@@ -76,7 +76,7 @@ class Register extends Component{
                     <form onSubmit= {this.submitForm} className="form">
                         <div className="form-group">
                             <label htmlFor= "username" className="label">Username</label>
-                            <input type = "username" onChange={this.updateUserName} value={this.state.username} className="input"></input>
+                            <input type = "username" name="username" onChange={this.updateUserName} value={this.state.username} className="input"></input>
                         </div>
                         <div className="form-group">
                             <label htmlFor= "email" className="label">Email</label>

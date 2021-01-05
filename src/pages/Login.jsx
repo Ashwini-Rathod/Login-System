@@ -7,11 +7,11 @@ import login from "./login.svg";
 import Nav from "../components/Nav";
 import Footer from "../components/Footer";
 import initFontAwesome from "../components/initFontAwesome";
-const url = "http://localhost:5000/users/login";
+const url = "https://signup-login-backend.herokuapp.com/users/login";
 
 class Login extends Component{
     state= {
-        email: "",
+        username: "",
         password: "",
         successfullyLoggedIn: false,
 
@@ -25,7 +25,7 @@ class Login extends Component{
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                email: event.target.email.value,
+                username: event.target.username.value,
                 password: event.target.password.value,
             })
         })
@@ -46,16 +46,16 @@ class Login extends Component{
         .catch((err)=>{
             console.log(err);
         })
-        this.setState({email: event.target.email.value, password: event.target.password.value})
+        this.setState({username: event.target.username.value, password: event.target.password.value})
     }
-    updateEmail = (event) =>{
-        this.setState({email: event.target.value});
+    updateUsername = (event) =>{
+        this.setState({username: event.target.value});
     }
     updatePassword = (event)=>{
         this.setState({password: event.target.value});
     }
     clearInputField = (event) =>{
-        this.setState({password: "", email: ""});
+        this.setState({password: "", username: ""});
     }
 
     render(){
@@ -76,8 +76,8 @@ class Login extends Component{
                     </div>
                     <form onSubmit= {this.submitForm} className="form">
                         <div className="form-group">
-                        <label htmlFor= "email" className="label">Email</label>
-                        <input type = "email" name= "email" onChange={this.updateEmail} value={this.state.email} className="input"></input>
+                        <label htmlFor= "username" className="label">username</label>
+                        <input type = "username" name= "username" onChange={this.updateUsername} value={this.state.username} className="input"></input>
                         </div>
                         <div className="form-group">
                         <label htmlFor = "password" className="label">Password</label>
