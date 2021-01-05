@@ -36,7 +36,31 @@ New users can register themselves using this page. The user will have to enter i
 
 This page will be displayed in case of any invalid Url other than the routes defined in the Router.jsx file.
 
+### Running the Application:
 
+1. Clone the repository using
+
+      https://github.com/Ashwini-Rathod/Login-System
+
+2. Run this command only once:
+
+      nmp install
+
+To install all the dependencies.
+
+3. Then run the command:
+
+      npm run start
+
+  To start the React Server whenever you need to see the Webpage.
+
+4. The Backend is hosted on Heroku.
+
+  [Link for Backend](https://signup-login-backend.herokuapp.com/)
+
+5. The application is hosted on vercel.
+
+    The Live link for the same is: https://login-system.vercel.app/
 
 
  
