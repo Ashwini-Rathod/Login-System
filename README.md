@@ -37,6 +37,8 @@ New users can register themselves using this page. The user will have to enter i
 This page will be displayed in case of any invalid Url other than the routes defined in the Router.jsx file.
 
 
+
+
  
 
 
