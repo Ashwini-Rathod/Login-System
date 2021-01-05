@@ -52,15 +52,15 @@ To install all the dependencies.
 
       npm run start
 
-  To start the React Server whenever you need to see the Webpage.
+To start the React Server whenever you need to see the Webpage.
 
 4. The Backend is hosted on Heroku.
 
-  [Link for Backend](https://signup-login-backend.herokuapp.com/)
+[Link for Backend](https://signup-login-backend.herokuapp.com/)
 
 5. The application is hosted on vercel.
 
-    The Live link for the same is: https://login-system.vercel.app/
+The Live link for the same is: https://login-system.vercel.app/
 
 
  
