@@ -118,5 +118,48 @@
     "email": "happy123@gmail.com",
     "password": "$2a$10$WgE7QCps99tohbvPnqnFEO/JIZTSew9.fIHIvLGA1AHNEj95bStB2",
     "createdAt": 1609688332610
+  },
+  {
+    "userId": "azmdewckjifld18",
+    "email": "testing987@gmail.com",
+    "password": "$2a$10$0qF/ydfAT5x2dd43CXsO9uzXVGyhxqZ9qQmAwlgPckDf6VfCwk3Za",
+    "createdAt": 1609756728379
+  },
+  {
+    "userId": "azmdf7ekjiftjh5",
+    "email": "altaf@gmail.com",
+    "password": "$2a$10$uAHIFE5ufHR/KYDiVmk5O.A6/qE5M5t1Zb8roCtBruTcTAilcwv6u",
+    "createdAt": 1609757109976
+  },
+  {
+    "userId": "azmdfcakjifxqyd",
+    "email": "altaf123@gmail.com",
+    "password": "$2a$10$TKBmoKr3frvwWbpJG/IsROsedRQzF/Cjyiw1NPcVGvMRCAF2kSB46",
+    "createdAt": 1609757306292
+  },
+  {
+    "userId": "azmdgidkjihj8r7",
+    "email": "validemail@gmail.com",
+    "password": "$2a$10$SBM7wLpH.YppIUls5CzvXOa3W9hrEYKiFToD2uuzLMpzRDVnpPrai",
+    "createdAt": 1609759988754
+  },
+  {
+    "userId": "azmdgidkjihlrhy",
+    "email": "testingprops@abc.com",
+    "password": "$2a$10$MZz9zn2.Cmmqb3uRtRyCW.CwD.DQ1Ptc4/LVp8eQ9Rq.5o7uoYwVi",
+    "createdAt": 1609760106358
+  },
+  {
+    "username": "ashwini27@react.com",
+    "userId": "azmd3v5kjjhw6pz",
+    "email": "$2a$10$cJtSImWdXEpP6sGMuFPibeOsPFPQp/xXwAXl.uXfhKjrGiGYxVAE6",
+    "createdAt": 1609821058822
+  },
+  {
+    "username": "ashwini27",
+    "userId": "azmd4askjji36nc",
+    "email": "ashwini2727@react.com",
+    "password": "$2a$10$X1RA/mxYk0ES35ItR7ZMeO6ERZ0vcxR5ksDYq5PHEe4AnPak98pZK",
+    "createdAt": 1609821385319
   }
 ]

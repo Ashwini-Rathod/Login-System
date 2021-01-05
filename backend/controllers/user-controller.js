@@ -12,7 +12,7 @@ dotenv.config({path: "./config.env"});
 const { generatetoken }= require("../helpers/jwt-token");
 
 const signUpUser = (req, res)=>{
-    let newUser = new User(req.body.email, req.body.password);
+    let newUser = new User(req.body.username, req.body.email, req.body.password);
     users.push(newUser);
     fs.writeFile(fileName, JSON.stringify(users, null, 2), (err)=>{
         if(err){
@@ -30,7 +30,7 @@ const loginUser = async (req, res, next)=>{
             return sendError(new AppError(401, "Unsuccessful", "Incorrect Password"),req, res);
         }
         //generate a jwt token
-        let jwtToken = await generatetoken({ email: req.currentUser.email}, process.env.JWT_SECRET, { expiresIn: "1d"});
+        let jwtToken = await generatetoken({ username: req.currentUser.username}, process.env.JWT_SECRET, { expiresIn: "1d"});
         res.cookie("jwt", jwtToken); 
         res.status(200).json({
             status: "Successful",

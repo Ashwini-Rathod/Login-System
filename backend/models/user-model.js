@@ -1,6 +1,7 @@
 const uniqid = require("uniqid");
 class User{
-    constructor(email, password){
+    constructor(username ,email, password){
+        this.username = username;
         this.userId = uniqid();
         this.email = email,
         this.password = password; //hashed form : bcrpt

@@ -12,10 +12,10 @@ const checkReqBody = (req, res, next)=>{
     let validationArray;
     switch(req.url){
         case "/signin":
-            validationArray = ["email", "password", "confirmPassword"];
+            validationArray = ["username","email", "password", "confirmPassword"];
             break;
         case "/login":
-            validationArray = ["email", "password"];
+            validationArray = ["username", "password"];
             break;
         default:
             return sendError(new AppError(404))
@@ -54,6 +54,16 @@ const isEmailUnique = (req, res, next)=>{
     next();
 }
 
+const isUserNameUnique = (req,res, next) =>{
+    let findUser = users.find((user)=>{
+        return user.username == req.body.username;
+    })
+    if(findUser){
+        return sendError(new AppError(401, "Unsuccessful", "User name already taken. Please select a different username"), req, res);
+    }
+    next();
+}
+
 const createPasswordHash = async (req,res, next) =>{
     try{
         let salt = await bcrypt.genSalt(10);
@@ -67,11 +77,13 @@ const createPasswordHash = async (req,res, next) =>{
 }
 
 const isUserRegistered = (req, res, next)=>{
+    const fileName = path.join(__dirname, "..", "data", "data.json");
+    const users = JSON.parse(fs.readFileSync(fileName, "UTF-8"));
     let findUser = users.find((user)=>{
-        return user.email == req.body.email;
+        return user.username == req.body.username;
     })
     if(!findUser){
-        return sendError(new AppError(422, "Unsuccessful", "Invalid email or user not registered"), req, res);
+        return sendError(new AppError(422, "Unsuccessful", "User not registered"), req, res);
     }
     req.currentUser = {...findUser};
     next();
@@ -83,3 +95,4 @@ module.exports.checkConfirmPassword = checkConfirmPassword;
 module.exports.isEmailUnique = isEmailUnique;
 module.exports.createPasswordHash = createPasswordHash;
 module.exports.isUserRegistered = isUserRegistered;
+module.exports.isUserNameUnique = isUserNameUnique;

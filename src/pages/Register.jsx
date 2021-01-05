@@ -8,6 +8,7 @@ const url = "http://localhost:5000/users/signin";
 
 class Register extends Component{
     state= {
+        username: "",
         email: "",
         password: "",
         confirmPassword: ""
@@ -21,6 +22,7 @@ class Register extends Component{
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
+                username: event.target.username.value,
                 email: event.target.email.value,
                 password: event.target.password.value,
                 confirmPassword: event.target.confirmPassword.value,
@@ -43,6 +45,10 @@ class Register extends Component{
             console.log(err);
         })
         this.setState({email: event.target.email.value, password: event.target.password.value})
+        this.props.history.push("/login");
+    }
+    updateUserName = (event) =>{
+        this.setState({username: event.target.value});
     }
     updateEmail = (event) =>{
         this.setState({email: event.target.value});
@@ -54,7 +60,7 @@ class Register extends Component{
         this.setState({confirmPassword: event.target.value});
     }
     clearInputField = (event) =>{
-        this.setState({password: "", email: "", confirmPassword: ""});
+        this.setState({password: "", email: "", confirmPassword: "", username: ""});
     }
 
     render(){
@@ -69,19 +75,23 @@ class Register extends Component{
                     </div>
                     <form onSubmit= {this.submitForm} className="form">
                         <div className="form-group">
-                        <label htmlFor= "email" className="label">Email</label>
-                        <input type = "email" name= "email" onChange={this.updateEmail} value={this.state.email} className="input"></input>
+                            <label htmlFor= "username" className="label">Username</label>
+                            <input type = "username" onChange={this.updateUserName} value={this.state.username} className="input"></input>
                         </div>
                         <div className="form-group">
-                        <label htmlFor = "password" className="label">Password</label>
-                        <input type= "password" name= "password" onChange={this.updatePassword} value= {this.state.password} className="input"></input>
+                            <label htmlFor= "email" className="label">Email</label>
+                            <input type = "email" name= "email" onChange={this.updateEmail} value={this.state.email} className="input"></input>
                         </div>
                         <div className="form-group">
-                        <label htmlFor = "confirmPassword" className="label">Confirm Password</label>
-                        <input type= "password" name= "confirmPassword" onChange={this.updateChangePassword} value= {this.state.confirmPassword} className="input"></input>
+                            <label htmlFor = "password" className="label">Password</label>
+                            <input type= "password" name= "password" onChange={this.updatePassword} value= {this.state.password} className="input"></input>
+                        </div>
+                        <div className="form-group">
+                            <label htmlFor = "confirmPassword" className="label">Confirm Password</label>
+                            <input type= "password" name= "confirmPassword" onChange={this.updateChangePassword} value= {this.state.confirmPassword} className="input"></input>
                         </div>
                         <div>
-                        <input type= "submit" value= "Register" className="btn"></input>
+                            <input type= "submit" value= "Register" className="btn"></input>
                         </div>
                     </form>
                     <div>

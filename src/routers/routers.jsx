@@ -12,7 +12,14 @@ class Router extends Component{
                 <BrowserRouter>
                     <Switch>
                         <Route path="/"exact component={App}/>
-                        <Route path="/register" exact component={Register}/>
+                        <Route 
+                            path="/register"
+                            render = {
+                                (props) => {
+                                    return <Register {...props}/>
+                                }
+                            }
+                        />
                         <Route path="/login" exact component={Login}/>
                         <Route component={NotFound}/>
                     </Switch>
