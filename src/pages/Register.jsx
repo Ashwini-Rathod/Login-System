@@ -38,8 +38,9 @@ class Register extends Component{
             }
             else{
                 alert(`Welcome! You are now a part of CodersWorld Family. Please login to continue.`);
-                this.props.history.push("/login");
                 this.clearInputField();
+                this.props.history.push("/login");
+                
             }
         })
         .catch((err)=>{

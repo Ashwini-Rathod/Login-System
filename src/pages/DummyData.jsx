@@ -40,6 +40,27 @@ class Dummy extends Component{
             return new Error("Invalid Login");
         })
         .then((data)=>{
+            this.renderTasks();
+        })
+        .catch((err)=>{
+            console.log(err);
+        })
+    }
+
+    renderTasks = () =>{
+        fetch(url, {
+            method: "GET",
+            headers: {
+                'Authorization': `Bearer ${Cookies.get("jwt")}`,
+            }
+        })
+        .then((response)=>{
+            if(response.ok){
+                return response.json();
+            }
+            return new Error("Invalid Login");
+        })
+        .then((data)=>{
             this.setState({tasks: [...data.data]})
         })
         .catch((err)=>{
