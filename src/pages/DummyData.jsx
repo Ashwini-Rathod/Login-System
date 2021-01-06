@@ -34,7 +34,10 @@ class Dummy extends Component{
             }
         })
         .then((response)=>{
-            return response.json();
+            if(response.ok){
+                return response.json();
+            }
+            return new Error("Invalid Login");
         })
         .then((data)=>{
             this.setState({tasks: [...data.data]})
