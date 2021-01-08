@@ -60,7 +60,7 @@ To start the React Server whenever you need to see the Webpage.
 
 5. The application is hosted on vercel.
 
-The Live link for the same is: https://login-system-k8j0mb2ts.vercel.app/
+The Live link for the same is: https://login-system.vercel.app/
 
 
  
