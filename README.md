@@ -44,7 +44,7 @@ This page will be displayed in case of any invalid Url other than the routes def
 
 2. Run this command only once:
 
-      nmp install
+      npm install
 
 To install all the dependencies.
 
@@ -52,7 +52,7 @@ To install all the dependencies.
 
       npm run start
 
-To start the React Server whenever you need to see the Webpage.
+To start the React Application.
 
 4. The Backend is hosted on Heroku.
 
