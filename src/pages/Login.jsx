@@ -2,7 +2,7 @@ import {Component} from "react";
 import Cookies from "js-cookie";
 import Dummy from "../pages/DummyData";
 import { Link } from "react-router-dom";
-import "./Login.css";
+import  styles from "./Login.module.css";
 import login from "./login.svg";
 import Nav from "../components/Nav";
 import Footer from "../components/Footer";
@@ -14,7 +14,6 @@ class Login extends Component{
         username: "",
         password: "",
         successfullyLoggedIn: false,
-
     }
     
     submitForm = (event) =>{
@@ -30,7 +29,10 @@ class Login extends Component{
             })
         })
         .then((response)=>{
-            return response.json();
+            if(response.ok){
+                return response.json();
+            }
+            return new Error("User not found");
         })
         .then((data)=>{
             if(data.status === "Successful"){
@@ -62,40 +64,43 @@ class Login extends Component{
         initFontAwesome();
         return(
             <div>
-                <Nav/>
                 {
                     this.state.successfullyLoggedIn === true? 
                     (
-                        <Dummy />
+                        <Dummy/>
                     ):
                     (
-                    <div className="container">
+                     <div>
+                    <Nav/>
+                    <div className={styles["container"]}>
                     <div>
-                        <h2 className="welcome-msg">Login to get started!!</h2>
-                        <img src={login} alt = "" className="logo"></img>
+                        <h2 className={styles["welcome-msg"]}>Login to get started!!</h2>
+                        <img src={login} alt = "" className={styles["logo"]}></img>
                     </div>
-                    <form onSubmit= {this.submitForm} className="form">
-                        <div className="form-group">
-                        <label htmlFor= "username" className="label">username</label>
-                        <input type = "username" name= "username" onChange={this.updateUsername} value={this.state.username} className="input"></input>
+                    <form onSubmit= {this.submitForm} className={styles["form"]}>
+                        <div className={styles["form-group"]}>
+                        <label htmlFor= "username" className={styles["label"]}>username</label>
+                        <input type = "username" name= "username" onChange={this.updateUsername} value={this.state.username} className={styles["input"]}></input>
                         </div>
-                        <div className="form-group">
-                        <label htmlFor = "password" className="label">Password</label>
-                        <input type= "password" name= "password" onChange={this.updatePassword} value= {this.state.password} className="input"></input>
+                        <div className={styles["form-group"]}>
+                        <label htmlFor = "password" className={styles["label"]}>Password</label>
+                        <input type= "password" name= "password" onChange={this.updatePassword} value= {this.state.password} className={styles["input"]}></input>
                         </div>
                         <div >
-                        <input type= "submit" value= "Login" className="btn"></input>
+                        <input type= "submit" value= "Login" className={styles["btn"]}></input>
                         </div>
                     </form>
                     <div>
-                        <p className="additional-p">Need an account? 
-                            <Link to ="/register" className="additional">Register Now</Link>
+                        <p className={styles["additional-p"]}>Need an account? 
+                            <Link to ="/register" className={styles["additional"]}>Register Now</Link>
                         </p>
                     </div>
                     </div>
+                    <Footer/>
+                    </div>
                     )
                 }
-            <Footer/>
+
             </div>
         )
     }

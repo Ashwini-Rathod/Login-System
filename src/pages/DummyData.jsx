@@ -1,11 +1,15 @@
 import { Component } from "react";
 import Cookies from "js-cookie";
-import "./Dummy.css";
+import styles from "./Dummy.module.css";
+import Login from "./Login";
+import Nav from "../components/Nav";
+import Footer from "../components/Footer";
 const url = "https://signup-login-backend.herokuapp.com/users/tasks";
 
 class Dummy extends Component{
     state={
         tasks: [], 
+        isLoggedIn: true,
     }
     
     updateStatus(id) {
@@ -68,39 +72,56 @@ class Dummy extends Component{
         })
     }
 
+    logout = () =>{
+        Cookies.remove("jwt");
+        this.setState({isLoggedIn: false});
+    }
+
     render(){
-        return(
-            <div className="main-div">
+        if(this.state.isLoggedIn === true){
+            return(
+            <div>
+            <Nav/>
+            <div className={styles["main-div"]}>
+            <div>
                 <div>
-                    <div>
-                        <h1 className="dummy-heading">Let's start coding...!!</h1>
-                    </div>
-                    <div>
-                    {
-                        this.state.tasks.map((task)=>{
-                            return(
-                                <div key={task.taskId} className="dummy-container">
-                                    <div>
-                                    <p style={{
-                                        textDecoration: task.status === "Complete"?
-                                        (
-                                            "line-through"
-                                        ):
-                                        (
-                                            ""
-                                        )
-                                    }} className="dummy-p">{task.task}</p>
-                                    </div>
-                                    <div>
-                                    <button onClick={()=> this.updateStatus(task.taskId)} className="complete-btn">Complete</button>
-                                    </div>
+                    <h1 className={styles["dummy-heading"]}>Let's start coding...!!</h1>
+                </div>
+                <div>
+                {
+                    this.state.tasks.map((task)=>{
+                        return(
+                            <div key={task.taskId} className={styles["dummy-container"]}>
+                                <div>
+                                <p style={{
+                                    textDecoration: task.status === "Complete"?
+                                    (
+                                        "line-through"
+                                    ):
+                                    (
+                                        ""
+                                    )
+                                }} className={styles["dummy-p"]}>{task.task}</p>
                                 </div>
-                            )
-                        })
-                    }
-                    </div>
+                                <div>
+                                <button onClick={()=> this.updateStatus(task.taskId)} className={styles["complete-btn"]}>Complete</button>
+                                </div>
+                            </div>
+                        )
+                    })
+                }
                 </div>
             </div>
+            <div className={styles["btn-div"]}>
+                <button onClick= {this.logout} className={styles["btn"]}>Logout</button>
+            </div>
+        </div>
+        <Footer/>
+        </div>
+        )
+        }
+        return(
+            <Login/>
         )
     }
 }

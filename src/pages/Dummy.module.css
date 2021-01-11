@@ -25,6 +25,20 @@
     padding: 5px 10px;
     border-radius: 12px;
 }
+.btn-div{
+    text-align: center;
+}
+.btn{
+    font-size: 18px;
+    border: 0;
+    background-color: #3498db;
+    color: #fff;
+    border-radius: 3px;
+    cursor: pointer;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding: 10px;
+}
 @media(max-width: 700px){
     .dummy-container{
         flex-direction: column;
@@ -48,6 +62,10 @@
     }
     .dummy-p{
         font-size: 10px;
+    }
+    .btn{
+        font-size: 12px;
+        padding: 5px;
     }
 }
 @media(max-width: 100px){
