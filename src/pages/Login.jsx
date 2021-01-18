@@ -1,5 +1,4 @@
 import {Component} from "react";
-import Cookies from "js-cookie";
 import Dummy from "../pages/DummyData";
 import { Link } from "react-router-dom";
 import  styles from "./Login.module.css";
@@ -7,7 +6,10 @@ import login from "./login.svg";
 import Nav from "../components/Nav";
 import Footer from "../components/Footer";
 import initFontAwesome from "../components/initFontAwesome";
-const url = "https://signup-login-backend.herokuapp.com/users/login";
+import store from "../store/store";
+import userActionGenerator from "../actions/userActionGenerator";
+import { userActionTypes } from "../constants/userActionTypes";
+import {connect} from "react-redux";
 
 class Login extends Component{
     state= {
@@ -18,38 +20,15 @@ class Login extends Component{
     
     submitForm = (event) =>{
         event.preventDefault();
-        fetch(url, {
-            method: "POST",
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                username: event.target.username.value,
-                password: event.target.password.value,
-            })
-        })
-        .then((response)=>{
-            if(response.ok){
-                return response.json();
-            }
-            return new Error("User not found");
-        })
-        .then((data)=>{
-            if(data.status === "Successful"){
-                this.setState({successfullyLoggedIn: true});
-                Cookies.set("jwt", data.data[0].jwt);
-                this.clearInputField();
-            }
-            else{
-                alert(data.message);
-                this.clearInputField();
-            }       
-        })
-        .catch((err)=>{
-            console.log(err);
-        })
-        this.setState({username: event.target.username.value, password: event.target.password.value})
+        event.preventDefault();
+        store.dispatch(userActionGenerator(userActionTypes.LOGOUT));
+        store.dispatch(userActionGenerator(userActionTypes.LOGIN, {
+            username: event.target.username.value,
+            password: event.target.password.value,
+        }))
+        this.clearInputField();
     }
+
     updateUsername = (event) =>{
         this.setState({username: event.target.value});
     }
@@ -61,17 +40,17 @@ class Login extends Component{
     }
 
     render(){
+        let user = localStorage.getItem("user");
         initFontAwesome();
         return(
             <div>
+                <Nav/>
                 {
-                    this.state.successfullyLoggedIn === true? 
+                    user? 
                     (
                         <Dummy/>
                     ):
                     (
-                     <div>
-                    <Nav/>
                     <div className={styles["container"]}>
                     <div>
                         <h2 className={styles["welcome-msg"]}>Login to get started!!</h2>
@@ -96,14 +75,22 @@ class Login extends Component{
                         </p>
                     </div>
                     </div>
-                    <Footer/>
-                    </div>
                     )
                 }
-
+                    <Footer/>
             </div>
         )
     }
 }
 
-export default Login;
+
+const mapStateToProps = (state) =>{
+    console.log(state);
+    return{
+        user: state.userReducer.user,
+        isLoggedIn : state.userReducer.isLoggedIn
+    }
+}
+
+
+export default connect(mapStateToProps)(Login);

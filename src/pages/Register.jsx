@@ -5,7 +5,11 @@ import Nav from "../components/Nav";
 import Footer from "../components/Footer";
 import initFontAwesome from "../components/initFontAwesome";
 import  styles from "./Login.module.css";
-const url = "https://signup-login-backend.herokuapp.com/users/signin";
+import store from "../store/store";
+import { connect } from "react-redux";
+import userActionGenerator from "../actions/userActionGenerator";
+import { userActionTypes } from "../constants/userActionTypes";
+// const url = "https://signup-login-backend.herokuapp.com/users/signin";
 
 class Register extends Component{
     state= {
@@ -17,41 +21,16 @@ class Register extends Component{
     
     submitForm = (event) =>{
         event.preventDefault();
-        fetch(url, {
-            method: "POST",
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                username: event.target.username.value,
-                email: event.target.email.value,
-                password: event.target.password.value,
-                confirmPassword: event.target.confirmPassword.value,
-            })
-        })
-        .then((response)=>{
-            if(response.ok){
-                return response.json();
-            }
-            return new Error("Invalid Input");
-        })
-        .then((data)=>{
-            if(data.status === "Unsuccessful"){
-                alert(data.message);
-                this.clearInputField();
-            }
-            else{
-                alert(`Welcome! You are now a part of CodersWorld Family. Please login to continue.`);
-                this.clearInputField();
-                this.props.history.push("/login");
-                
-            }
-        })
-        .catch((err)=>{
-            console.log(err);
-        })
-        this.setState({username: event.target.username.value, password: event.target.password.value})
+        event.preventDefault();
+        store.dispatch(userActionGenerator(userActionTypes.REGISTER, {
+            username: event.target.username.value,
+            email: event.target.email.value,
+            password: event.target.password.value,
+            confirmPassword: event.target.confirmPassword.value,
+        }))
+        this.clearInputField();
     }
+
     updateUserName = (event) =>{
         this.setState({username: event.target.value});
     }
@@ -113,4 +92,11 @@ class Register extends Component{
     }
 }
 
-export default Register;
+const mapStateToProps = (state) =>{
+    console.log(state);
+    return{
+        user: state.userReducer.user[0]
+    }
+}
+
+export default connect(mapStateToProps)(Register);
