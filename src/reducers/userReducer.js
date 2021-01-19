@@ -5,11 +5,6 @@ const initialState = {
     isLoggedIn: false,
 }
 
-// let user = JSON.parse(localStorage.getItem('user'));
-// console.log("User from local storage: ",user);
-// const initialState = user ? { isLoggedIn: true, user } : {isLoggedIn: false, user=[]};
-
-
 const userReducer = (state=initialState, action) =>{
     switch(action.type){
         case userActionTypes.REGISTER :
@@ -19,7 +14,6 @@ const userReducer = (state=initialState, action) =>{
                 isLoggedIn: action.payload.isLoggedIn,
             }
         case userActionTypes.LOGIN : 
-            // console.log("Payload", action.payload);
             return {
                 ...state,
                 user: {...action.payload.user},

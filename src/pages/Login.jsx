@@ -15,11 +15,10 @@ class Login extends Component{
     state= {
         username: "",
         password: "",
-        successfullyLoggedIn: false,
+        successfullyLoggedIn: false,   
     }
     
     submitForm = (event) =>{
-        event.preventDefault();
         event.preventDefault();
         store.dispatch(userActionGenerator(userActionTypes.LOGOUT));
         store.dispatch(userActionGenerator(userActionTypes.LOGIN, {
@@ -40,6 +39,7 @@ class Login extends Component{
     }
 
     render(){
+        
         let user = localStorage.getItem("user");
         initFontAwesome();
         return(
@@ -85,12 +85,10 @@ class Login extends Component{
 
 
 const mapStateToProps = (state) =>{
-    console.log(state);
     return{
         user: state.userReducer.user,
         isLoggedIn : state.userReducer.isLoggedIn
     }
 }
-
 
 export default connect(mapStateToProps)(Login);

@@ -9,18 +9,16 @@ import store from "../store/store";
 import { connect } from "react-redux";
 import userActionGenerator from "../actions/userActionGenerator";
 import { userActionTypes } from "../constants/userActionTypes";
-// const url = "https://signup-login-backend.herokuapp.com/users/signin";
 
 class Register extends Component{
     state= {
         username: "",
         email: "",
         password: "",
-        confirmPassword: ""
+        confirmPassword: "",
     }
     
     submitForm = (event) =>{
-        event.preventDefault();
         event.preventDefault();
         store.dispatch(userActionGenerator(userActionTypes.REGISTER, {
             username: event.target.username.value,
@@ -93,9 +91,8 @@ class Register extends Component{
 }
 
 const mapStateToProps = (state) =>{
-    console.log(state);
-    return{
-        user: state.userReducer.user[0]
+    return{     
+        user: state.userReducer.user[0],
     }
 }
 

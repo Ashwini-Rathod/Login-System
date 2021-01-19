@@ -6,7 +6,6 @@ const urlLogin = "https://signup-login-backend.herokuapp.com/users/login";
 const userActionGenerator = (actionType, payload= {}) => {
     switch(actionType){
         case userActionTypes.REGISTER : 
-            console.log("Payload: ",payload);
             return (dispatch)=>{
                 fetch(urlRegister, {
                     method: "POST",
@@ -24,14 +23,26 @@ const userActionGenerator = (actionType, payload= {}) => {
                     return response.json();
                 })
                 .then((data)=>{
-                    // console.log(data);
-                    dispatch({
-                        type: userActionTypes.REGISTER,
-                        payload : {
-                            user: {...data.data[0]},
-                            isLoggedIn: false,
-                        }
-                    })
+                    if(data.status === "Unsuccessful"){
+                        dispatch({
+                            type: userActionTypes.REGISTER,
+                            payload: {
+                                user: {},
+                                isLoggedIn: false
+                            }
+                        })
+                        alert(data.message);
+                    }
+                    else{
+                        alert("Welcome to CodersWorld.com!! Please login to continue");
+                        dispatch({
+                            type: userActionTypes.REGISTER,
+                            payload : {
+                                user: {...data.data[0]},
+                                isLoggedIn: false,
+                            }
+                        })
+                    }
                 })
                 .catch((err)=>{
                     console.log(err);
@@ -53,19 +64,19 @@ const userActionGenerator = (actionType, payload= {}) => {
                     return response.json();
                 })
                 .then((data)=>{
-                    // console.log(data);
-                    // console.log(data.data[0])
-                    if(data.status === "Successful"){
-                        Cookies.set("jwt", data.data[0].jwt);
-                        localStorage.setItem("user", JSON.stringify(data.data[0]));
-                        dispatch({
-                            type: userActionTypes.LOGIN,
-                            payload : {
-                                user: {...data.data[0]},
-                                isLoggedIn : true,
-                            }   
-                        })
+                    if(data.status === "Unsuccessful"){
+                       alert(data.message);
+                       return;
                     }
+                    Cookies.set("jwt", data.data[0].jwt);
+                    localStorage.setItem("user", JSON.stringify(data.data[0]));
+                    dispatch({
+                        type: userActionTypes.LOGIN,
+                        payload : {
+                            user: {...data.data[0]},
+                            isLoggedIn : true,
+                        }   
+                    })
                 })
                 .catch((err)=>{
                     console.log(err);
@@ -78,7 +89,6 @@ const userActionGenerator = (actionType, payload= {}) => {
                     type: userActionTypes.LOGOUT,
                     payload: {}
                 })
-                       
             }
         default :
             return ("Invalid Action");

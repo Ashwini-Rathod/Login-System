@@ -77,6 +77,7 @@ class Dummy extends Component {
 
     logout = () => {
         store.dispatch(userActionGenerator(userActionTypes.LOGOUT));
+        Cookies.remove("jwt");
     }
 
     render() {
