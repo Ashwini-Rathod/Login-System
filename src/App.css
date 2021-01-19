@@ -24,6 +24,7 @@
   font-size: 18px;
   font-weight: bold;
   border-radius: 20px;
+  outline: none;
 }
 .login-btn{
   background-color: rgb(241, 89, 89);
@@ -34,6 +35,7 @@
   font-size: 18px;
   font-weight: bold;
   border-radius: 20px;
+  outline: none;
 }
 .heading{
   color: #3498db;
