@@ -1,7 +1,7 @@
 import {userActionTypes } from "../constants/userActionTypes";
 import Cookies from "js-cookie";
-const urlRegister = "https://signup-login-backend.herokuapp.com/users/signin";
-const urlLogin = "https://signup-login-backend.herokuapp.com/users/login";
+const urlRegister = "https://todo-backend-user.herokuapp.com/users/signup";
+const urlLogin = "https://todo-backend-user.herokuapp.com/users/login";
 
 const userActionGenerator = (actionType, payload= {}) => {
     switch(actionType){
@@ -64,11 +64,12 @@ const userActionGenerator = (actionType, payload= {}) => {
                     return response.json();
                 })
                 .then((data)=>{
+                    // console.log("From redux: ",data.data[0]);
                     if(data.status === "Unsuccessful"){
                        alert(data.message);
                        return;
                     }
-                    Cookies.set("jwt", data.data[0].jwt);
+                    Cookies.set("jwt", data.data[0][0].jwt);
                     localStorage.setItem("user", JSON.stringify(data.data[0]));
                     dispatch({
                         type: userActionTypes.LOGIN,

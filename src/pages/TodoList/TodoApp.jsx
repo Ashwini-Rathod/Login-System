@@ -1,32 +1,52 @@
-import { Component } from "react";
+import React,{ Component } from "react";
 import Cookies from "js-cookie";
-import styles from "./Dummy.module.css";
-// import Login from "./Login";
-// import Nav from "../components/Nav";
-// import Footer from "../components/Footer";
-import store from "../store/store";
-import userActionGenerator from "../actions/userActionGenerator";
-import { userActionTypes } from "../constants/userActionTypes";
-const url = "https://signup-login-backend.herokuapp.com/users/tasks";
+import styles from "./Todo.module.css";
+import AddTask from "./AddTask";
+
+const url = "https://todo-backend-user.herokuapp.com/todolist/tasks";
 
 class Dummy extends Component {
     state = {
+        newTask: "",
         tasks: [],
         isLoggedIn: true,
     }
 
-    updateStatus(id) {
+    updateStatus =(id) => {
         fetch(`${url}/${id}`, {
             method: "PATCH",
             headers: {
-                'Content-Type': 'application/json'
+                'Authorization': `Bearer ${Cookies.get("jwt")}`,
             },
         })
             .then((response) => {
                 return response.json();
             })
             .then((data) => {
-                this.setState({ tasks: data.data });
+                this.setState({ tasks: data.data[0] });
+            })
+            .catch((err) => {
+                console.log(err);
+            })
+    }
+
+    deleteTask =(id) => {
+        fetch(`${url}/${id}`, {
+            method: "DELETE",
+            headers: {
+                'Authorization': `Bearer ${Cookies.get("jwt")}`,
+            },
+        })
+            .then((response) => {
+                return response.json();
+            })
+            .then((data) => {
+            let todoList = [...this.state.tasks];
+            let result = todoList.findIndex((todo)=>{
+                return todo.taskId === id;
+                })
+            todoList.splice(result, 1);
+            this.setState({tasks: todoList});
             })
             .catch((err) => {
                 console.log(err);
@@ -68,17 +88,59 @@ class Dummy extends Component {
                 return new Error("Invalid Login");
             })
             .then((data) => {
-                this.setState({ tasks: [...data.data] })
+                console.log(data);
+                this.setState({ tasks: [...data.data[0]] })
             })
             .catch((err) => {
                 console.log(err);
             })
     }
 
-    logout = () => {
-        store.dispatch(userActionGenerator(userActionTypes.LOGOUT));
-        Cookies.remove("jwt");
+
+    handleChange = (e) =>{
+        this.setState({newTask : e.target.value});
     }
+
+    handleSubmit = (e) => {
+        e.preventDefault();
+        console.log();
+        if(this.state.newTask){
+            fetch(url, {
+                method: "POST",
+                headers: {
+                  'Content-Type' : "application/json",
+                  'Authorization': `Bearer ${Cookies.get("jwt")}`,
+                  
+                },
+                body: JSON.stringify({ taskName: this.state.newTask }),
+              })
+              .then((res)=>{
+                return res.json();
+              })
+              .then((data)=>{
+                console.log(data);
+                if(data.status === "Unsuccesful"){
+                   return alert(data.message);
+                }
+                
+                    let cloneTodoList = [...this.state.tasks];
+                    cloneTodoList.push(data.data[0][0]);
+                    this.setState({tasks: cloneTodoList})
+                    this.setState({newTask: ""})
+                
+              })
+              .catch((err)=>{
+                console.log(err);
+              })
+        }
+        else{
+            return alert("Empty Input");
+        }
+        
+    }
+
+
+ 
 
     render() {
         return (
@@ -87,6 +149,11 @@ class Dummy extends Component {
                     <div>
                         <h1 className={styles["dummy-heading"]}>Let's start coding...!!</h1>
                     </div>
+                    <AddTask
+                        submit={this.handleSubmit}
+                        handleChange={this.handleChange}
+                        task={this.state.newTask}
+                    />
                     <div>
                         {
                             this.state.tasks.map((task) => {
@@ -94,26 +161,24 @@ class Dummy extends Component {
                                     <div key={task.taskId} className={styles["dummy-container"]}>
                                         <div>
                                             <p style={{
-                                                textDecoration: task.status === "Complete" ?
+                                                textDecoration: task.status === "Completed" ?
                                                     (
                                                         "line-through"
                                                     ) :
                                                     (
                                                         ""
                                                     )
-                                            }} className={styles["dummy-p"]}>{task.task}</p>
+                                            }} className={styles["dummy-p"]}>{task.taskName}</p>
                                         </div>
                                         <div>
                                             <button onClick={() => this.updateStatus(task.taskId)} className={styles["complete-btn"]}>Complete</button>
+                                            <button onClick={() => this.deleteTask(task.taskId)} className={styles["complete-btn"]}>Delete</button>
                                         </div>
                                     </div>
                                 )
                             })
                         }
                     </div>
-                </div>
-                <div className={styles["btn-div"]}>
-                     <button onClick={this.logout} className={styles["btn"]}>Logout</button>
                 </div>
             </div>
         )

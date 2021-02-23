@@ -1,8 +1,9 @@
 import './App.css';
+import React from "react";
 import {Link} from "react-router-dom";
 import image from "./coder.svg"
-import Nav from "./components/Nav";
-import Footer from "./components/Footer";
+import Nav from "./components/Navigation/Nav";
+import Footer from "./components/Footer/Footer";
 import initFontAwesome from "./components/initFontAwesome";
 
 function App (){

@@ -1,3 +1,4 @@
+import React from "react";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import footerstyle from "./Footer.module.css";
 import {Component} from "react";
