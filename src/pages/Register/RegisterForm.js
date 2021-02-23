@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 import styles from "../Login/Login.module.css";
+import PropTypes from "prop-types";
 
 class RegisterForm extends Component{
     render(){
@@ -64,6 +65,18 @@ class RegisterForm extends Component{
           </form>
         );
     }
+}
+
+RegisterForm.propTypes={
+  username: PropTypes.string.isRequired,
+  email: PropTypes.string.isRequired,
+  password: PropTypes.string.isRequired,
+  confirmPassword: PropTypes.string.isRequired,
+  submit: PropTypes.func.isRequired,
+  updateUserName: PropTypes.func.isRequired,
+  updateEmail: PropTypes.func.isRequired,
+  updatePassword: PropTypes.func.isRequired,
+  updateChangePassword: PropTypes.func.isRequired,
 }
 
 export default RegisterForm;

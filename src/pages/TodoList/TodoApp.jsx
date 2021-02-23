@@ -2,11 +2,17 @@ import React,{ Component } from "react";
 import Cookies from "js-cookie";
 import styles from "./Todo.module.css";
 import AddTask from "./AddTask";
+import {validateTask} from "../../utils/validation";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faTrash} from "@fortawesome/free-solid-svg-icons"; 
+import {faCheck} from "@fortawesome/free-solid-svg-icons";
+import {faPen} from "@fortawesome/free-solid-svg-icons";
 
 const url = "https://todo-backend-user.herokuapp.com/todolist/tasks";
 
 class Dummy extends Component {
     state = {
+        edited: false,
         newTask: "",
         tasks: [],
         isLoggedIn: true,
@@ -51,6 +57,32 @@ class Dummy extends Component {
             .catch((err) => {
                 console.log(err);
             })
+    }
+
+    editTask = (id) =>{
+        const newTask = prompt("Change your Todo :)");
+        if(validateTask(newTask)){
+            return alert("Invalid Input");
+        };
+        fetch(`${url}/${id}`, {
+            method: "PUT",
+            headers: {
+                'Content-Type' : "application/json",
+                'Authorization': `Bearer ${Cookies.get("jwt")}`,
+            },
+            body: JSON.stringify({ taskName: newTask })
+        })
+        .then((res)=>{
+            // console.log(res);
+            return res.json();
+        })
+        .then((data)=>{
+            this.setState({tasks: data.data[0]});
+            // console.log(data);
+        })
+        .catch((err)=>{
+            console.log(err);
+        })
     }
 
     componentDidMount = () => {
@@ -98,6 +130,7 @@ class Dummy extends Component {
 
 
     handleChange = (e) =>{
+        console.log(e.target.value);
         this.setState({newTask : e.target.value});
     }
 
@@ -171,9 +204,11 @@ class Dummy extends Component {
                                             }} className={styles["dummy-p"]}>{task.taskName}</p>
                                         </div>
                                         <div>
-                                            <button onClick={() => this.updateStatus(task.taskId)} className={styles["complete-btn"]}>Complete</button>
-                                            <button onClick={() => this.deleteTask(task.taskId)} className={styles["complete-btn"]}>Delete</button>
+                                            <button onClick={() => this.editTask(task.taskId)} ><FontAwesomeIcon icon={faPen}/></button>
+                                            <button onClick={() => this.updateStatus(task.taskId)}><FontAwesomeIcon icon={faCheck}/></button>
+                                            <button onClick={() => this.deleteTask(task.taskId)} ><FontAwesomeIcon icon={faTrash}/></button>
                                         </div>
+
                                     </div>
                                 )
                             })
