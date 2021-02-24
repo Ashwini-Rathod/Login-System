@@ -1,14 +1,17 @@
 import React,{ Component } from "react";
 import Cookies from "js-cookie";
 import styles from "./Todo.module.css";
-import AddTask from "./AddTask";
-import {validateTask} from "../../utils/validation";
+import AddTask from "../AddTask/AddTask";
+import {validateTask} from "../../../utils/validation";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faTrash} from "@fortawesome/free-solid-svg-icons"; 
-import {faCheck} from "@fortawesome/free-solid-svg-icons";
+import {faClipboardCheck} from "@fortawesome/free-solid-svg-icons";
 import {faPen} from "@fortawesome/free-solid-svg-icons";
+import TaskItem from "../TaskItem/TaskItem";
+import Today from "../../../components/Today/Today";
 
-const url = "https://todo-backend-user.herokuapp.com/todolist/tasks";
+export const url = "https://todo-backend-user.herokuapp.com/todolist/tasks";
+
 
 class Dummy extends Component {
     state = {
@@ -73,12 +76,10 @@ class Dummy extends Component {
             body: JSON.stringify({ taskName: newTask })
         })
         .then((res)=>{
-            // console.log(res);
             return res.json();
         })
         .then((data)=>{
             this.setState({tasks: data.data[0]});
-            // console.log(data);
         })
         .catch((err)=>{
             console.log(err);
@@ -86,24 +87,25 @@ class Dummy extends Component {
     }
 
     componentDidMount = () => {
-        fetch(url, {
-            method: "GET",
-            headers: {
-                'Authorization': `Bearer ${Cookies.get("jwt")}`,
-            }
-        })
-            .then((response) => {
-                if (response.ok) {
-                    return response.json();
-                }
-                return new Error("Invalid Login");
-            })
-            .then((data) => {
-                this.renderTasks();
-            })
-            .catch((err) => {
-                console.log(err);
-            })
+        this.renderTasks();
+        // fetch(url, {
+        //     method: "GET",
+        //     headers: {
+        //         'Authorization': `Bearer ${Cookies.get("jwt")}`,
+        //     }
+        // })
+        //     .then((response) => {
+        //         if (response.ok) {
+        //             return response.json();
+        //         }
+        //         return new Error("Invalid Login");
+        //     })
+        //     .then((data) => {
+        //         this.renderTasks(data);
+        //     })
+        //     .catch((err) => {
+        //         console.log(err);
+        //     })
     }
 
     renderTasks = () => {
@@ -120,7 +122,6 @@ class Dummy extends Component {
                 return new Error("Invalid Login");
             })
             .then((data) => {
-                console.log(data);
                 this.setState({ tasks: [...data.data[0]] })
             })
             .catch((err) => {
@@ -128,9 +129,7 @@ class Dummy extends Component {
             })
     }
 
-
     handleChange = (e) =>{
-        console.log(e.target.value);
         this.setState({newTask : e.target.value});
     }
 
@@ -171,16 +170,13 @@ class Dummy extends Component {
         }
         
     }
-
-
- 
-
     render() {
         return (
-            <div className={styles["main-div"]}>
-                <div>
+            <div >
+                <div className={styles["main-div"]}>
                     <div>
-                        <h1 className={styles["dummy-heading"]}>Let's start coding...!!</h1>
+                        <h2 className={styles["plan"]}>What's your plan for today?</h2>
+                        <Today/>
                     </div>
                     <AddTask
                         submit={this.handleSubmit}
@@ -192,21 +188,11 @@ class Dummy extends Component {
                             this.state.tasks.map((task) => {
                                 return (
                                     <div key={task.taskId} className={styles["dummy-container"]}>
+                                        <TaskItem task={task}/>
                                         <div>
-                                            <p style={{
-                                                textDecoration: task.status === "Completed" ?
-                                                    (
-                                                        "line-through"
-                                                    ) :
-                                                    (
-                                                        ""
-                                                    )
-                                            }} className={styles["dummy-p"]}>{task.taskName}</p>
-                                        </div>
-                                        <div>
-                                            <button onClick={() => this.editTask(task.taskId)} ><FontAwesomeIcon icon={faPen}/></button>
-                                            <button onClick={() => this.updateStatus(task.taskId)}><FontAwesomeIcon icon={faCheck}/></button>
-                                            <button onClick={() => this.deleteTask(task.taskId)} ><FontAwesomeIcon icon={faTrash}/></button>
+                                            <button onClick={() => this.editTask(task.taskId)} ><FontAwesomeIcon icon={faPen} color="blue" ></FontAwesomeIcon></button>
+                                            <button onClick={() => this.updateStatus(task.taskId)} ><FontAwesomeIcon icon={faClipboardCheck} color="green"/></button>
+                                            <button onClick={() => this.deleteTask(task.taskId)}  ><FontAwesomeIcon icon={faTrash} color="red"/></button>
                                         </div>
 
                                     </div>
@@ -218,6 +204,7 @@ class Dummy extends Component {
             </div>
         )
     }
+
 }
 
 export default Dummy;

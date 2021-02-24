@@ -1,13 +1,13 @@
 import React from "react";
-import "./NotFound.css";
+import styles from "./NotFound.module.css";
 import {Link } from "react-router-dom";
 
 function NotFound(){
     return(
-        <div className="not-found-container">
-            <img src="https://freefrontend.com/assets/img/html-funny-404-pages/Pure-CSS-404-Error-Page.png" alt="" className="image"></img>
+        <div className={styles["not-found-container"]}>
+            <img src="https://freefrontend.com/assets/img/html-funny-404-pages/Pure-CSS-404-Error-Page.png" alt="" className={styles["image"]}></img>
             <Link to="/">
-                <button className="btn">Go back to Home</button>
+                <button className={styles["btn"]}>Go back to Home</button>
             </Link>
 
         </div>

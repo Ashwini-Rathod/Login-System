@@ -2,7 +2,8 @@ import React, {Component} from "react";
 import {BrowserRouter, Route, Switch} from "react-router-dom";
 import App from "../App";
 import Login from "../pages/Login/Login";
-import Register from "../pages/Register/Register";
+import Register from "../pages/Register/Register"; 
+import Task from "../pages/Task/Task";
 import NotFound from "../components/NotFound/NotFound";
 
 class Router extends Component{
@@ -17,6 +18,14 @@ class Router extends Component{
                             render = {
                                 (props) => {
                                     return <Register {...props}/>
+                                }
+                            }
+                        />
+                        <Route 
+                            path="/task/:id"
+                            render = {
+                                (props) => {
+                                    return <Task {...props}/>
                                 }
                             }
                         />

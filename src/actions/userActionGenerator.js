@@ -35,6 +35,7 @@ const userActionGenerator = (actionType, payload= {}) => {
                     }
                     else{
                         alert("Welcome to CodersWorld.com!! Please login to continue");
+                        window.location.href = "http://localhost:3000/login"
                         dispatch({
                             type: userActionTypes.REGISTER,
                             payload : {

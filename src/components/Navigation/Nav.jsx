@@ -1,6 +1,6 @@
 import React from "react";
 import {Link} from "react-router-dom";
-import "./Nav.css";
+import styles from "./Nav.module.css";
 import store from "../../store/store";
 import userActionGenerator from "../../actions/userActionGenerator";
 import { userActionTypes } from "../../constants/userActionTypes";
@@ -16,23 +16,23 @@ function Nav (){
     // console.log(Cookies.get("jwt"));
     
     return(
-        <nav className="nav-container"> 
+        <nav className={styles["nav-container"]}> 
         <div >
             {/* <img src={icon} alt="app-icon" className="icon"></img> */}
-            <h2 className="title">TODO</h2>
+            <h2 className={styles["title"]}>TODO</h2>
         </div>
         {
-            Cookies.get("jwt") ?  (
+            localStorage.getItem("user") ?  (
                 <div>
-                    <Link to="/login" className="home">
-                        <p className="home-p" onClick={logout}>Logout</p>
+                    <Link to="/login" className={styles["home"]}>
+                        <p className={styles["home-p"]} onClick={logout}>Logout</p>
                     </Link>
                 </div>
             ) :
             (
                 <div>
-                <Link to="/" className="home">
-                    <p className="home-p">Home</p>
+                <Link to="/" className={styles["home"]}>
+                    <p className={styles["home-p"]}>Home</p>
                 </Link>
                 </div>
             )

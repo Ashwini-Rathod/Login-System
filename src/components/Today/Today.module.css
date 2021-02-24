@@ -1,0 +1,14 @@
+
+.container{
+    margin-bottom: 10px;
+    text-align: center;
+}
+.day{
+    color: #3498db;
+    font-size: 35px;
+    margin: 10px 20px 0px;
+    font-weight: bolder;
+}
+.month{
+    color: gray;
+}
